@@ -7,7 +7,9 @@
     "build": "npx tsc",
     "jasmine": "jasmine",
     "start": "nodemon src/index.ts",
-    "test": "npm run build && npm run jasmine"
+    "lint": "eslint . --ext .ts",
+    "test": "npm run build && npm run jasmine",
+    "prettify": "prettier --config .prettierrc src/*.ts --write"
   },
   "keywords": [
     "udacity",
@@ -30,6 +32,8 @@
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
