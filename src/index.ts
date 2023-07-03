@@ -1,10 +1,13 @@
 import express, { RequestHandler } from 'express';
+import routes from './routes';
 
 const app: express.Application = express();
 const port = 3000;
 
+app.use('/api', routes);
+
 app.get('/', (req, res): void => {
-  res.send('Server is running');
+  res.send('Server is running.');
 });
 
 app.listen(port, () => {
