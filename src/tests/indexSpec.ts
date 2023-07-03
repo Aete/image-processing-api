@@ -16,12 +16,12 @@ describe('Test status of responses from the endpoints', (): void => {
     expect(response.status).toBe(200);
   });
 
-  it('Should Be ok: endpoint: /api/image-resize', async (): Promise<void> => {
+  it('Should Be failed - without any parameters: endpoint: /api/image-resize', async (): Promise<void> => {
     const response = await request.get('/api/image-resize');
     expect(response.status).toBe(200);
   });
 
-  it('Should Be ok: endpoint: /api/placeholder', async (): Promise<void> => {
+  it('Should Be failed - without any parameters: endpoint: /api/placeholder', async (): Promise<void> => {
     const response = await request.get('/api/placeholder');
     expect(response.status).toBe(200);
   });
