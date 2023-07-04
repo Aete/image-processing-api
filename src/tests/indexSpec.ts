@@ -17,7 +17,9 @@ describe('Test status of responses from the endpoints', (): void => {
   });
 
   it('Should Be ok - with parameters: endpoint: /api/image-resize', async (): Promise<void> => {
-    const response = await request.get('/api/image-resize?width=300&height=500&filename=cat2.jpg');
+    const response = await request.get(
+      '/api/image-resize?width=300&height=500&filename=cat2.jpg'
+    );
     expect(response.status).toBe(200);
   });
 
@@ -43,8 +45,15 @@ describe('Test status of responses from the endpoints', (): void => {
 });
 
 describe('Testing file handling', (): void => {
-  it('file content type should be an image', async () => {
-    const response = await request.get('/api/image-resize?width=300&height=500&filename=cat2.jpg');
+  it('Should Be ok - image-resize: file content type should be an image', async () => {
+    const response = await request.get(
+      '/api/image-resize?width=300&height=500&filename=cat2.jpg'
+    );
+    expect(response.header['content-type']).toBe('image/png');
+  });
+
+  it('Should Be ok - placeholder: file content type should be an image', async () => {
+    const response = await request.get('/api/placeholder?width=300&height=500');
     expect(response.header['content-type']).toBe('image/png');
   });
 });
