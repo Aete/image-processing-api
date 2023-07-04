@@ -1,6 +1,6 @@
 import express from 'express';
 
-import imageResize from './api/image-resize/image-resize';
+import imageResize from './api/image-resize';
 import placeholder from './api/placeholder';
 
 const routes = express.Router();
