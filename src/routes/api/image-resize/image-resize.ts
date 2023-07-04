@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
-import { imageResizer, outputDir } from '../../../utilities/imageResizer';
+import { imageResizer} from '../../../utilities/imageResizer';
 
 
 
