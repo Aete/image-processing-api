@@ -1,38 +1,22 @@
 import fs from 'fs';
+import path from 'path';
 import express from 'express';
-import sharp from 'sharp';
+import { imageResizer, outputDir } from '../../../utilities/imageResizer';
 
-interface Image {
-  width: number | null;
-  height: number | null;
-  input: string | null;
-}
+
 
 // express route
 const imageResize = express.Router();
 
-const outputDir = '../../../assets/resized';
-
-// function for image resizing
-const imageResizer = async (img: Image): Promise<string> => {
-  // setup
-  const { width, height, input } = img;
-
-  // resizing
-  try {
-    await sharp(input as string).resize(width, height).toFormat('png').toFile(outputDir);
-    return 'Success!';
-  } catch {
-    return 'Failed to resize the image';
-  }
-};
-
 imageResize.get('/', async (req: express.Request, res: express.Response): Promise<void> => {
   const { filename, height, width } = req.query;
-
-  if (!(filename && height && width)) res.status(400); 
-
-  res.send(`filename is ${filename}, height is ${height}, width is ${width}`);
+  
+  if (!(filename && height && width)) res.status(400);
+  else {
+    const name = (filename as string).split('.')[0]
+    await imageResizer({ width: parseInt(width as string), height: parseInt(height as string), input: filename as string });
+    res.sendFile(path.join(__dirname, `../../../../assets/resized/${name}_${width}_${height}.png`));
+  }
 });
 
 export default imageResize;
