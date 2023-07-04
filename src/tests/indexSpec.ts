@@ -31,9 +31,3 @@ describe('Test status of responses from the endpoints', (): void => {
     expect(response.status).toBe(200);
   });
 });
-
-// 파일이 존재하지 않을 때 -> 실패
-
-// 파일이 존재하지만 이미지가 아닐 때 -> 실패
-
-// 파일이 존재하고 이미지일 때 -> 성공
