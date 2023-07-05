@@ -8,12 +8,12 @@ Additionally, the API offers the capability to generate placeholder images. Plac
 
 ## npm Scripts
 
-install: `npm install`
-start server: `npm start`
-build: `npm run build`
-unit test: `npm run test`
-lint: `npm run lint`
-formatting: `npm run prettify`
+- install: `npm install`<br/>
+- start server: `npm start`<br/>
+- build: `npm run build`<br/>
+- unit test: `npm run test`<br/>
+- lint: `npm run lint`<br/>
+- formatting: `npm run prettify`<br/>
 
 ## How to use?
 
