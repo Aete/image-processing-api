@@ -23,24 +23,14 @@ describe('Test status of responses from the endpoints', (): void => {
     expect(response.status).toBe(200);
   });
 
-  it('Should Be failed - without any parameters: endpoint: /api/image-resize', async (): Promise<void> => {
-    const response = await request.get('/api/image-resize');
-    expect(response.status).toBe(200);
-  });
-
   it('Should Be ok - with parameters: endpoint: /api/placeholder?height=300&width=600', async (): Promise<void> => {
     const response = await request.get('/api/placeholder?height=300&width=600');
     expect(response.status).toBe(200);
   });
 
-  it('Should Be failed - without any parameters: endpoint: /api/placeholder', async (): Promise<void> => {
-    const response = await request.get('/api/placeholder');
-    expect(response.status).toBe(200);
-  });
-
-  it('Should failed: endpoint: /fail', async (): Promise<void> => {
+  it('Should Be ok: endpoint: /fail', async (): Promise<void> => {
     const response = await request.get('/fail');
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(404);
   });
 });
 
@@ -52,8 +42,22 @@ describe('Testing file handling', (): void => {
     expect(response.header['content-type']).toBe('image/png');
   });
 
+  it('Should Be ok - image-resize with wrong parameter', async () => {
+    const response = await request.get(
+      '/api/image-resize?width=-300&height=500&filename=cat2.jpg'
+    );
+    expect(response.text).toBe('please write a validated size or filename');
+  });
+
   it('Should Be ok - placeholder: file content type should be an image', async () => {
     const response = await request.get('/api/placeholder?width=300&height=500');
     expect(response.header['content-type']).toBe('image/png');
+  });
+
+  it('Should Be ok - placeholder: file content type should be an image', async () => {
+    const response = await request.get(
+      '/api/placeholder?width=-300&height=500'
+    );
+    expect(response.text).toBe('please write a validated size');
   });
 });
